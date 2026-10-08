@@ -107,7 +107,7 @@ func testSha256Avx512(t *testing.T, offset, padding int) [16][]byte {
 	}
 	output := blockAvx512(initDigests(), input, mask)
 	for i := 0; i < 16; i++ {
-		if bytes.Compare(output[i][:], golden[offset+i].out[:]) != 0 {
+		if !bytes.Equal(output[i][:], golden[offset+i].out[:]) {
 			t.Fatalf("Sum256 function: sha256(%s) = %s want %s", golden[offset+i].in, hex.EncodeToString(output[i][:]), hex.EncodeToString(golden[offset+i].out[:]))
 		}
 	}
@@ -146,7 +146,7 @@ func TestAvx512_MixedBlocks(t *testing.T) {
 		} else {
 			offset = 31
 		}
-		if bytes.Compare(output[i][:], golden[offset+i].out[:]) != 0 {
+		if !bytes.Equal(output[i][:], golden[offset+i].out[:]) {
 			t.Fatalf("Sum256 function: sha256(%s) = %s want %s", golden[offset+i].in, hex.EncodeToString(output[i][:]), hex.EncodeToString(golden[offset+i].out[:]))
 		}
 	}
@@ -183,7 +183,7 @@ func TestAvx512_MixedWithNilBlocks(t *testing.T) {
 				0x3c, 0x6e, 0xf3, 0x72, 0xa5, 0x4f, 0xf5, 0x3a,
 				0x51, 0x0e, 0x52, 0x7f, 0x9b, 0x05, 0x68, 0x8c,
 				0x1f, 0x83, 0xd9, 0xab, 0x5b, 0xe0, 0xcd, 0x19}
-			if bytes.Compare(output[i][:], initvec[:]) != 0 {
+			if !bytes.Equal(output[i][:], initvec[:]) {
 				t.Fatalf("Sum256 function: sha256 for nil vector = %s want %s", hex.EncodeToString(output[i][:]), hex.EncodeToString(initvec[:]))
 			}
 			continue
@@ -193,7 +193,7 @@ func TestAvx512_MixedWithNilBlocks(t *testing.T) {
 		} else {
 			offset = 31
 		}
-		if bytes.Compare(output[i][:], golden[offset+i].out[:]) != 0 {
+		if !bytes.Equal(output[i][:], golden[offset+i].out[:]) {
 			t.Fatalf("Sum256 function: sha256(%s) = %s want %s", golden[offset+i].in, hex.EncodeToString(output[i][:]), hex.EncodeToString(golden[offset+i].out[:]))
 		}
 	}
@@ -213,14 +213,14 @@ func TestAvx512Server(t *testing.T) {
 	for i := 0; i < 16; i++ {
 		input := make([]byte, 64)
 		copy(input, golden[offset+i].in)
-		server.Write(uint64(Avx512ServerUID+i), input)
+		_, _ = server.Write(uint64(Avx512ServerUID+i), input)
 	}
 
 	// Second block of 64 bytes
 	for i := 0; i < 16; i++ {
 		input := make([]byte, 64)
 		copy(input, golden[offset+i].in[64:])
-		server.Write(uint64(Avx512ServerUID+i), input)
+		_, _ = server.Write(uint64(Avx512ServerUID+i), input)
 	}
 
 	wg := sync.WaitGroup{}
@@ -240,8 +240,8 @@ func TestAvx512Server(t *testing.T) {
 		}
 		go func(i int, uid uint64, input []byte) {
 			output := server.Sum(uid, input)
-			if bytes.Compare(output[:], golden[offset+i].out[:]) != 0 {
-				t.Fatalf("Sum256 function: sha256(%s) = %s want %s", golden[offset+i].in, hex.EncodeToString(output[:]), hex.EncodeToString(golden[offset+i].out[:]))
+			if !bytes.Equal(output[:], golden[offset+i].out[:]) {
+				t.Errorf("Sum256 function: sha256(%s) = %s want %s", golden[offset+i].in, hex.EncodeToString(output[:]), hex.EncodeToString(golden[offset+i].out[:]))
 			}
 			wg.Done()
 		}(i, uint64(Avx512ServerUID+i), input)
@@ -278,7 +278,7 @@ func TestAvx512Digest(t *testing.T) {
 	}
 	for i := 0; i < tests; i++ {
 		output := h512[i].Sum([]byte{})
-		if bytes.Compare(output[:], golden[offset+i].out[:]) != 0 {
+		if !bytes.Equal(output[:], golden[offset+i].out[:]) {
 			t.Fatalf("Sum256 function: sha256(%s) = %s want %s", golden[offset+i].in, hex.EncodeToString(output[:]), hex.EncodeToString(golden[offset+i].out[:]))
 		}
 	}

@@ -100,7 +100,7 @@ func New() hash.Hash {
 func Sum256(data []byte) (result [Size]byte) {
 	var d digest
 	d.Reset()
-	d.Write(data)
+	_, _ = d.Write(data)
 	result = d.checkSum()
 	return
 }
@@ -427,7 +427,7 @@ func (d *digest) UnmarshalBinary(b []byte) error {
 	b, d.h[6] = consumeUint32(b)
 	b, d.h[7] = consumeUint32(b)
 	b = b[copy(d.x[:], b):]
-	b, d.len = consumeUint64(b)
+	_, d.len = consumeUint64(b)
 	d.nx = int(d.len % chunk)
 	return nil
 }

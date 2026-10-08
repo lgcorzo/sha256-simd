@@ -2378,7 +2378,7 @@ func TestGoldenMarshal(t *testing.T) {
 				h := tt.newHash()
 				h2 := tt.newHash()
 
-				io.WriteString(h, g.in[:len(g.in)/2])
+				_, _ = io.WriteString(h, g.in[:len(g.in)/2])
 
 				state, err := h.(encoding.BinaryMarshaler).MarshalBinary()
 				if err != nil {
@@ -2396,8 +2396,8 @@ func TestGoldenMarshal(t *testing.T) {
 					continue
 				}
 
-				io.WriteString(h, g.in[len(g.in)/2:])
-				io.WriteString(h2, g.in[len(g.in)/2:])
+				_, _ = io.WriteString(h, g.in[len(g.in)/2:])
+				_, _ = io.WriteString(h2, g.in[len(g.in)/2:])
 
 				if actual, actual2 := h.Sum(nil), h2.Sum(nil); !bytes.Equal(actual, actual2) {
 					t.Errorf("sha%s(%q) = 0x%x != marshaled 0x%x", tt.name, g.in, actual, actual2)
