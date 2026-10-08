@@ -22,7 +22,7 @@
 // https://github.com/intel/intel-ipsec-mb/blob/master/avx512/sha256_x16_avx512.asm
 //
 // For Golang it has been converted into Plan 9 assembly with the help of
-// github.com/minio/asm2plan9s to assemble the AVX512 instructions
+// github.com/lgcorzo/asm2plan9s to assemble the AVX512 instructions
 //
 
 // Copyright (c) 2017, Intel Corporation
