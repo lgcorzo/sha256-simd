@@ -1,5 +1,8 @@
 # lgcorzo/sha256-simd
 
+Maintained fork of [minio/sha256-simd](https://github.com/minio/sha256-simd). It applies security patches and maintenance fixes on top of upstream. Part of the [Dark Gravity](https://github.com/lgcorzo/rust_CACD_autonomous_factory) factory. License: Apache 2.0.
+
+
 [![Go Action Status](https://github.com/lgcorzo/sha256-simd/workflows/Go/badge.svg)](https://github.com/lgcorzo/sha256-simd/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lgcorzo/sha256-simd)](https://goreportcard.com/report/github.com/lgcorzo/sha256-simd)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
