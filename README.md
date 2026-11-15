@@ -21,7 +21,7 @@ This repository is actively maintained under **@lgcorzo** as part of the **Sover
 
 * **Full Supply-Chain Autonomy:** Eliminates external dependencies and safeguards against upstream license changes, unexpected deprecations, or sudden breaking modifications.
 * **Dark Gravity Factory Core Integration:** Powers high-throughput hash verification, payload integrity checks, and data pipeline security for autonomous AI processing and automated agent infrastructure.
-* **Compliance & Security:** Sovereign maintenance ensures strict compliance with the **EU AI Act**, **SOC 2 Type II**, **ISO 25059**, and rigorous zero-CVE security SLAs through continuous automated analysis.
+* **Auditability & Security Maintenance:** Continuous automated vulnerability analysis and security patching designed to facilitate auditing and traceability.
 * **Ecosystem Interoperability:** Engineered for seamless integration across all 38 repositories in the @lgcorzo ecosystem (MinIO Server, KES, MC, Operator, DirectPV, Console, and SIMD hardware acceleration libraries).
 
 ### Automated CI/CD Maintenance Architecture
@@ -178,3 +178,10 @@ BenchmarkHash1M-4         6.05 MB/s    638.23 MB/s    105.49x
 ## License
 
 Released under the Apache License v2.0. See [LICENSE](LICENSE) for details.
+
+---
+
+### Fork Maintenance & Agent Transparency
+
+- **Changes vs. Upstream:** Security dependency updates, CI/CD workflow fixes, and CodeQL remediation are tracked in the [commit history](../../commits) and [Pull Requests](../../pulls?q=is%3Apr).
+- **Agent Tagging (`[agent]`):** Commits and pull requests generated automatically by agents in the Dark Gravity pipeline are prefixed with `[agent]` to distinguish automated maintenance from manual work.
