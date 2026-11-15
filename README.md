@@ -183,5 +183,5 @@ Released under the Apache License v2.0. See [LICENSE](LICENSE) for details.
 
 ### Fork Maintenance & Agent Transparency
 
-- **Changes vs. Upstream:** Security dependency updates, CI/CD workflow fixes, and CodeQL remediation are tracked in the [commit history](../../commits) and [Pull Requests](../../pulls?q=is%3Apr).
+- **Changes vs. Upstream:** Security dependency updates, CI/CD workflow fixes, and CodeQL remediation are tracked in the [commit history](https://github.com/lgcorzo/sha256-simd/commits) and [Pull Requests](https://github.com/lgcorzo/sha256-simd/pulls?q=is%3Apr).
 - **Agent Tagging (`[agent]`):** Commits and pull requests generated automatically by agents in the Dark Gravity pipeline are prefixed with `[agent]` to distinguish automated maintenance from manual work.
